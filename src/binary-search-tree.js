@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+// const { NotImplementedError } = require('../extensions/index.js');
 
 // const { Node } = require('../extensions/list-tree.js');
 
@@ -6,44 +6,73 @@ const { NotImplementedError } = require('../extensions/index.js');
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
-class BinarySearchTree {
-
-  root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+class Elem {
+	constructor(data) {
+		this.data = data;
+		this.right = null;
+		this.left = null;
+	}
 }
 
-module.exports = {
-  BinarySearchTree
-};
+
+class BinarySearchTree {
+	constructor() {
+		this.root = null;
+	}
+	root() {
+		return this.root
+	}
+
+	add(data) {
+		this.root = addData(this.root, data);
+
+		function addData(elem, data) {
+			if (elem) {
+				if (elem.data === data) return elem;
+				if (elem.data < data) {
+					elem.right = addData(elem.right, data);
+				} else { elem.left = addData(elem.left, data); }
+
+			} else { return new Elem(data) }
+			return elem
+		}
+
+	}
+
+	has(data) {
+
+	}
+
+	find(data) {
+
+	}
+
+	remove(data) {
+
+	}
+
+	min() {
+
+	}
+
+	max() {
+
+	}
+
+	showTree() {
+		console.log(`${this.root.data}
+		${this.root.left}	----- ${this.root.right}`)
+	}
+}
+
+// module.exports = {
+//   BinarySearchTree
+// };
+
+const tree = new BinarySearchTree();
+
+tree.add(2);
+tree.add(1);
+tree.add(3);
+
+tree.showTree()
