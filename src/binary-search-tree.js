@@ -1,4 +1,4 @@
-// const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../extensions/index.js');
 
 // const { Node } = require('../extensions/list-tree.js');
 
@@ -96,11 +96,21 @@ class BinarySearchTree {
 	}
 
 	min() {
-
+		if (!this.base) return null;
+		let min = this.base;
+		while (min.left) {
+			min = min.left;
+		}
+		return min.data
 	}
 
 	max() {
-
+		if (!this.base) return null;
+		let max = this.base;
+		while (max.right) {
+			max = max.right;
+		}
+		return max.data
 	}
 
 	showTree() {
@@ -113,27 +123,28 @@ class BinarySearchTree {
 	}
 }
 
-// module.exports = {
-//   BinarySearchTree
-// };
+module.exports = {
+  BinarySearchTree
+};
 
-const tree = new BinarySearchTree();
+// const tree = new BinarySearchTree();
 
-tree.add(2);
-tree.add(1);
-tree.add(3);
-tree.add(4);
-tree.add(5);
-tree.remove(5)
-tree.showTree()
-console.log(tree)
+// tree.add(2);
+// tree.add(1);
+// tree.add(3);
+// tree.add(4);
+// tree.add(5);
+// // tree.remove(5)
+// tree.showTree()
+// console.log(tree)
 
-console.log(tree.has(4), tree.has(8));
-console.log(tree.find(3), tree.find(5));
-console.log(tree.root().data)
-tree.remove(2)
-tree.showTree()
-console.log(tree)
-
+// console.log(tree.has(4), tree.has(8));
+// console.log(tree.find(3), tree.find(5));
+// console.log(tree.root().data)
+// // tree.remove(2)
+// tree.showTree()
+// console.log(tree)
+// console.log(tree.min())
+// console.log(tree.max())
 
 
