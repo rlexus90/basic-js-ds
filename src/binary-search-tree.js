@@ -83,9 +83,15 @@ class BinarySearchTree {
 
 				if (!elem.right) return elem = elem.left;
 
+				let maxLeft = elem.left;
+				while (maxLeft.right) {
+					maxLeft = maxLeft.right;
+				}
+				elem.data = maxLeft.data;
+				elem.left = removeElem(elem.left, elem.data);
 
+				return elem
 			}
-
 		}
 	}
 
@@ -125,4 +131,9 @@ console.log(tree)
 console.log(tree.has(4), tree.has(8));
 console.log(tree.find(3), tree.find(5));
 console.log(tree.root().data)
+tree.remove(2)
+tree.showTree()
+console.log(tree)
+
+
 
