@@ -64,7 +64,29 @@ class BinarySearchTree {
 	}
 
 	remove(data) {
+		this.root = removeElem(this.root, data);
 
+		function removeElem(elem, data) {
+			if (!elem) return null;
+
+			if (elem.data < data) {
+				elem.right = removeElem(elem.right, data);
+				return elem
+			} else {
+				elem.left = removeElem(elem.left, data);
+				return elem
+			};
+
+			if (!elem.left && !elem.right) return null;
+
+			if (!elem.left) return elem = elem.right;
+
+			if (!elem.right) return elem = elem.left;
+
+
+
+
+		}
 	}
 
 	min() {
@@ -82,12 +104,6 @@ class BinarySearchTree {
 			if (elemL) { showElem(elemL.left, elemL.right) }
 			if (elemR) { showElem(elemR.left, elemR.right) }
 		}
-
-
-
-
-		// 		console.log(`	${this.root.data}
-		// ${this.root.left.data}	----- ${this.root.right.data}`)
 	}
 }
 
@@ -102,10 +118,10 @@ tree.add(1);
 tree.add(3);
 tree.add(4);
 tree.add(5);
-
+tree.remove(5)
 tree.showTree()
 console.log(tree)
 
 console.log(tree.has(4), tree.has(8));
-console.log(tree.find(3), tree.find(10));
+console.log(tree.find(3), tree.find(5));
 
