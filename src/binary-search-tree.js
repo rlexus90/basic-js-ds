@@ -52,7 +52,15 @@ class BinarySearchTree {
 	}
 
 	find(data) {
-
+		if (!this.root.data) return null;
+		function search(elem, data) {
+			if (!elem) return null;
+			if (elem.data === data) return elem;
+			if (elem.data > data) {
+				return search(elem.left, data);
+			} else { return search(elem.right, data); }
+		}
+		return search(this.root, data)
 	}
 
 	remove(data) {
@@ -98,4 +106,6 @@ tree.add(5);
 tree.showTree()
 console.log(tree)
 
-console.log(tree.has(4),tree.has(8))
+console.log(tree.has(4), tree.has(8));
+console.log(tree.find(3), tree.find(10));
+
