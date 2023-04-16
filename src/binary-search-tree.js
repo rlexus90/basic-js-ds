@@ -40,7 +40,15 @@ class BinarySearchTree {
 	}
 
 	has(data) {
-
+		if (!this.root.data) return false;
+		function search(elem, data) {
+			if (!elem) return false;
+			if (elem.data === data) return true;
+			if (elem.data > data) {
+				return search(elem.left, data);
+			} else { return search(elem.right, data); }
+		}
+		return search(this.root, data)
 	}
 
 	find(data) {
@@ -60,8 +68,18 @@ class BinarySearchTree {
 	}
 
 	showTree() {
-		console.log(`${this.root.data}
-		${this.root.left}	----- ${this.root.right}`)
+		showElem(this.root)
+		function showElem(elemL, elemR) {
+			console.log(elemL ? elemL.data : null, elemR ? elemR.data : null)
+			if (elemL) { showElem(elemL.left, elemL.right) }
+			if (elemR) { showElem(elemR.left, elemR.right) }
+		}
+
+
+
+
+		// 		console.log(`	${this.root.data}
+		// ${this.root.left.data}	----- ${this.root.right.data}`)
 	}
 }
 
@@ -74,5 +92,10 @@ const tree = new BinarySearchTree();
 tree.add(2);
 tree.add(1);
 tree.add(3);
+tree.add(4);
+tree.add(5);
 
 tree.showTree()
+console.log(tree)
+
+console.log(tree.has(4),tree.has(8))
