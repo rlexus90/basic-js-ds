@@ -17,14 +17,14 @@ class Elem {
 
 class BinarySearchTree {
 	constructor() {
-		this.root = null;
+		this.base = null;
 	}
 	root() {
-		return this.root
+		return this.base
 	}
 
 	add(data) {
-		this.root = addData(this.root, data);
+		this.base = addData(this.base, data);
 
 		function addData(elem, data) {
 			if (elem) {
@@ -40,7 +40,7 @@ class BinarySearchTree {
 	}
 
 	has(data) {
-		if (!this.root.data) return false;
+		if (!this.base.data) return false;
 		function search(elem, data) {
 			if (!elem) return false;
 			if (elem.data === data) return true;
@@ -48,11 +48,11 @@ class BinarySearchTree {
 				return search(elem.left, data);
 			} else { return search(elem.right, data); }
 		}
-		return search(this.root, data)
+		return search(this.base, data)
 	}
 
 	find(data) {
-		if (!this.root.data) return null;
+		if (!this.base.data) return null;
 		function search(elem, data) {
 			if (!elem) return null;
 			if (elem.data === data) return elem;
@@ -60,11 +60,11 @@ class BinarySearchTree {
 				return search(elem.left, data);
 			} else { return search(elem.right, data); }
 		}
-		return search(this.root, data)
+		return search(this.base, data)
 	}
 
 	remove(data) {
-		this.root = removeElem(this.root, data);
+		this.base = removeElem(this.base, data);
 
 		function removeElem(elem, data) {
 			if (!elem) return null;
@@ -72,19 +72,19 @@ class BinarySearchTree {
 			if (elem.data < data) {
 				elem.right = removeElem(elem.right, data);
 				return elem
-			} else {
+			} else if (elem.data > data) {
 				elem.left = removeElem(elem.left, data);
 				return elem
-			};
+			} else {
 
-			if (!elem.left && !elem.right) return null;
+				if (!elem.left && !elem.right) return null;
 
-			if (!elem.left) return elem = elem.right;
+				if (!elem.left) return elem = elem.right;
 
-			if (!elem.right) return elem = elem.left;
+				if (!elem.right) return elem = elem.left;
 
 
-
+			}
 
 		}
 	}
@@ -98,7 +98,7 @@ class BinarySearchTree {
 	}
 
 	showTree() {
-		showElem(this.root)
+		showElem(this.base)
 		function showElem(elemL, elemR) {
 			console.log(elemL ? elemL.data : null, elemR ? elemR.data : null)
 			if (elemL) { showElem(elemL.left, elemL.right) }
@@ -124,4 +124,5 @@ console.log(tree)
 
 console.log(tree.has(4), tree.has(8));
 console.log(tree.find(3), tree.find(5));
+console.log(tree.root().data)
 
