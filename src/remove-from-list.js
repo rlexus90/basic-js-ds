@@ -15,18 +15,69 @@ const { NotImplementedError } = require('../extensions/index.js');
  * the output should be [1, 2, 4, 5]
  *
  * Singly - linked lists are already defined using interface
- * class ListNode {
- *   constructor(x) {
- *     this.value = x;
- *     this.next = null;
- *   }
- * }
+ *
+ *   
+ * 
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+class ListNode {
+	constructor(x) {
+		this.value = x;
+		this.next = null;
+	}
 }
 
+
+
+function removeKFromList(l, k) {
+	let currentEl = l
+	let nextEl = l.next;
+	let prevEl;
+	while (currentEl) {
+		if (currentEl.value === k) {
+			if (!prevEl) {
+				currentEl.value = nextEl.value;
+				currentEl.next = nextEl ? nextEl.next : null;
+			}
+			if (!nextEl) {
+				prevEl.next = null;
+				currentEl = null;
+			} else {
+				currentEl.value = nextEl.value;
+				currentEl.next = nextEl.next;
+				nextEl = currentEl ? currentEl.next : null;
+			}
+		} else {
+			prevEl = currentEl
+			currentEl = nextEl
+			nextEl = currentEl ? currentEl.next : null;
+		}
+
+	}
+	return l
+}
+
+// const input = convertArrayToList([1, 2, 3, 3, 4, 5])
+// console.log(removeKFromList(input, 1))
+
+
+
 module.exports = {
-  removeKFromList
+	removeKFromList
 };
+
+
+// function convertArrayToList(arr) {
+// 	return arr.reverse().reduce((acc, cur) => {
+// 		if (acc) {
+// 			const node = new ListNode(cur);
+// 			node.next = acc;
+// 			return node;
+// 		}
+
+// 		return new ListNode(cur);
+// 	}, null);
+// }
+
+
+
